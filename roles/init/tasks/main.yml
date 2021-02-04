@@ -1,0 +1,19 @@
+- name: Run the equivalent of "apt-get update" as a separate step
+  apt:
+    autoclean: yes
+    update_cache: yes
+    upgrade: dist
+  become: yes
+
+- name: Ensure apt dependencies are installed
+  apt:
+    name: "{{ apt_pkg }}"
+    state: latest
+  loop:
+    - curl
+    - fail2ban
+  loop_control:
+    loop_var: apt_pkg
+  become: yes
+
+  

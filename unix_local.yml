@@ -1,0 +1,13 @@
+---
+- hosts:
+  - localhost
+
+  roles:
+
+    - role: init
+    - role: geerlingguy.pip
+    - role: geerlingguy.docker
+      vars:
+        ansible_become: yes
+    - role: apt_snap
+    - role: node

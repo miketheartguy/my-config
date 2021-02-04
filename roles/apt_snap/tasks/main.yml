@@ -1,0 +1,32 @@
+- name: Install apt packages
+  apt:
+    name: "{{ apt_pkg }}"
+    state: latest
+  loop:
+    - fonts-firacode
+    - postgresql-client-common
+    - postgresql-client-12
+    - libxml2-utils
+    - unattended-upgrades
+  loop_control:
+    loop_var: apt_pkg
+  become: yes
+
+  
+- name: Install snap packages
+  snap:
+    name: "{{ snap_pkg.name }}"
+    classic: "{{ snap_pkg.classic }}"
+  loop:
+    - name: slack
+      classic: yes
+    - name: pycharm-professional
+      classic: yes
+    - name: code
+      classic: yes
+    - name: prospect-mail
+      classic: no
+    - name: htop
+      classic: no
+  loop_control:
+    loop_var: snap_pkg
