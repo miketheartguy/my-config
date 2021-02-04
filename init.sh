@@ -37,7 +37,7 @@ if [ ! -d "${PWD}/venv" ]; then
     INSTALL=true
 fi
 echo "Activating virtual environment"
-source ./venv/bin/activate
+source venv/bin/activate
 
 if [ "$INSTALL" = true ] ; then 
     echo "Installing Python Dependencies"

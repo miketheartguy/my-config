@@ -7,7 +7,7 @@
     chdir: "{{ ansible_env.HOME }}"
 
 - name: Install Node
-  shell: /bin/bash -ic nvm istall --lts --latest-npm
+  shell: /bin/bash -ic nvm install --lts --latest-npm
   register: node_version_response
   changed_when: "'already installed' not in node_version_response.stderr"
 
