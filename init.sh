@@ -44,4 +44,5 @@ if [ "$INSTALL" = true ] ; then
     pip install --force-reinstall -r requirements.txt
     echo "Installing Ansible Galaxy Dependencies"
     ansible-galaxy install --force -r requirements.yml
+    git clone https://github.com/morgangraphics/ansible-role-nvm $ANSIBLE_ROLES_PATH/ansible-role-nvm
 fi

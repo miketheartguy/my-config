@@ -9,5 +9,6 @@
     - role: geerlingguy.docker
       vars:
         ansible_become: yes
+    - role: ansible-role-nvm
     - role: apt_snap
-    - role: node
+    - role: aws_cli

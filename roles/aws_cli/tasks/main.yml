@@ -1,0 +1,53 @@
+- name: Ensure AWS CLI not installed already via package manager
+  apt:
+    name: awscli
+    state: absent
+  become: yes
+
+- name: Remove existing AWS CLI symlinks
+  file:
+    path: "{{ clipath }}"
+    state: absent
+  loop:
+    - /usr/local/bin/aws
+    - /usr/local/aws
+    - /usr/local/aws-cli
+    - /usr/local/bin/aws_completer
+  loop_control:
+    loop_var: clipath
+  become: yes
+
+- name: Download latest version
+  get_url:
+    url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+    dest: "{{ ansible_env.HOME }}/awscliv2.zip"
+
+- name: Unzip the AWS CLI files
+  unarchive:
+    src: "{{ ansible_env.HOME }}/awscliv2.zip"
+    dest: "{{ ansible_env.HOME }}"
+    remote_src: yes
+
+- name: Run the install script
+  shell: "{{ ansible_env.HOME }}/aws/install -i /usr/local/aws-cli -b /usr/local/bin"
+  args:
+    executable: /bin/bash
+  become: yes
+
+- name: Install Python packages to interact with AWS (boto)
+  pip:
+    name: "{{ py_pkg }}"
+    state: forcereinstall
+  loop:
+    # Pinning requirement versions due to issue
+    # https://github.com/boto/boto3/issues/2596
+    - botocore
+    - boto3==1.14.63
+    - requests
+  loop_control:
+    loop_var: py_pkg
+
+- name: Install AWS CDK
+  npm:
+    name: aws-cdk
+    global: yes
