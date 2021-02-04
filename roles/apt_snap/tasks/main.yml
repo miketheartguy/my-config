@@ -8,6 +8,8 @@
     - postgresql-client-12
     - libxml2-utils
     - unattended-upgrades
+    - openresolv
+    - wireguard
   loop_control:
     loop_var: apt_pkg
   become: yes
