@@ -8,7 +8,14 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 
 <#
 Install Fira Code
-https://chocolatey.org/
+https://github.com/tonsky/FiraCode
 #>
 
 choco install firacode
+
+<#
+Add "allow" rule to Windows firewall for WSL2 network
+https://www.jetbrains.com/help/pycharm/using-wsl-as-a-remote-interpreter.html
+https://github.com/microsoft/WSL/issues/4585
+#>
+New-NetFirewallRule -DisplayName "WSL" -Direction Inbound  -InterfaceAlias "vEthernet (WSL)"  -Action Allow
