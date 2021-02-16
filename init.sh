@@ -45,4 +45,5 @@ if [ "$INSTALL" = true ] ; then
     echo "Installing Ansible Galaxy Dependencies"
     ansible-galaxy install --force -r requirements.yml
     git clone https://github.com/morgangraphics/ansible-role-nvm $ANSIBLE_ROLES_PATH/ansible-role-nvm
+    pre-commit install
 fi
