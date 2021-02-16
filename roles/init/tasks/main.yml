@@ -16,4 +16,14 @@
     loop_var: apt_pkg
   become: yes
 
-  
+- name: Configure Git Email
+  community.general.git_config:
+    name: user.email
+    scope: global
+    value: "{{ git_user_email }}"
+
+- name: Configure Git Name
+  community.general.git_config:
+    name: user.email
+    scope: global
+    value: "{{ git_user_name }}"

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export ANSIBLE_ROLES_PATH=${PWD}/galaxy_roles
-export ANSIBLE_INVENTORY=${PWD}/inventory.yml
+export ANSIBLE_INVENTORY=${PWD}/inventory.py
 
 function usage
 {
@@ -31,7 +31,7 @@ while [ ! -z "$1" ];do
   shift
 done
 
-if [ ! -d "${PWD}/venv" ]; then 
+if [ ! -d "${PWD}/venv" ]; then
     echo "Creating vitual environment at ${PWD}/venv"
     python3 -m venv ./venv
     INSTALL=true
@@ -39,9 +39,9 @@ fi
 echo "Activating virtual environment"
 source venv/bin/activate
 
-if [ "$INSTALL" = true ] ; then 
+if [ "$INSTALL" = true ] ; then
     echo "Installing Python Dependencies"
-    pip install --force-reinstall -r requirements.txt
+    pip install -U -e .
     echo "Installing Ansible Galaxy Dependencies"
     ansible-galaxy install --force -r requirements.yml
     git clone https://github.com/morgangraphics/ansible-role-nvm $ANSIBLE_ROLES_PATH/ansible-role-nvm

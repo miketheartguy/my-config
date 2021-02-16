@@ -4,17 +4,11 @@
     state: latest
   loop:
     - fonts-firacode
-    - postgresql-client-common
-    - postgresql-client-12
-    - libxml2-utils
-    - unattended-upgrades
-    - openresolv
-    - wireguard
   loop_control:
     loop_var: apt_pkg
   become: yes
 
-  
+
 - name: Install snap packages
   snap:
     name: "{{ snap_pkg.name }}"

@@ -12,4 +12,11 @@ source init.sh
 ansible-playbook unix_local.yml --ask-become-pass
 ```
 
+Windows hosts, from Powershell as Administrator:
+```powershell
+./scripts/powershell/windows_init.ps1
+```
+
+Sync IDE/Editor Settings in VS Code & PyChaem
+
 .gitignore initially copied from https://github.com/github/gitignore

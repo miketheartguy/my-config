@@ -1,0 +1,12 @@
+---
+- hosts:
+  - localhost
+
+  roles:
+
+    - role: init
+    - role: geerlingguy.pip
+      vars:
+        ansible_become: yes
+    - role: cli_packages
+    - role: aws_cli

@@ -10,5 +10,6 @@
       vars:
         ansible_become: yes
     - role: ansible-role-nvm
-    - role: apt_snap
+    - role: cli_packages
+    - role: gui_packages
     - role: aws_cli
